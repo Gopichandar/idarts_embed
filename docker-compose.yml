@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm
+    ports:
+      - "3001:3001"
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      - ${STORAGE_LOCATION}:/app/server/storage
+      - ${STORAGE_LOCATION}/.env:/app/server/.env
+    environment:
+      - STORAGE_DIR=/app/server/storage
+
+  idarts-anythingllm-client:
+    image: gopichandar/idarts-anythingllm-client
+    ports:
+      - "3080:3080"
