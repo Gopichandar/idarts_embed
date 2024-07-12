@@ -17,3 +17,13 @@ services:
     image: gopichandar/idarts-anythingllm-client
     ports:
       - "3080:3080"
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/azureuser/nginx:/etc/nginx
+    depends_on:
+      - anythingllm
+      - idarts-anythingllm-client
